@@ -1,5 +1,7 @@
-package org.example.tasktrackerapi;
+package org.example.tasktrackerapi.config;
 
+import jakarta.persistence.*;
+import org.example.tasktrackerapi.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
@@ -8,7 +10,9 @@ import org.springframework.core.env.EnumerablePropertySource;
 import org.springframework.core.env.PropertySource;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class AppStartupRunner implements CommandLineRunner {

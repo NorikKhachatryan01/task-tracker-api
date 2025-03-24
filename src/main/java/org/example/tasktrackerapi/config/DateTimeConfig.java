@@ -1,6 +1,4 @@
-package org.example.tasktrackerapi;
-
-
+package org.example.tasktrackerapi.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "app.datetime")

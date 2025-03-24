@@ -1,4 +1,4 @@
-package org.example.tasktrackerapi;
+package org.example.tasktrackerapi.model;
 
 import jakarta.persistence.*;
 
@@ -10,10 +10,30 @@ public class Task {
     private String title;
     private Boolean status;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+    @Version
+    private Long version;
+
+
     public Task() {}
     public Task(Long id, String title, Boolean status)  {
         this.id = id;
         this.title = title;
+        this.status = status;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -41,13 +61,21 @@ public class Task {
         this.status = status;
     }
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", isCompleted=" + status +
+                ", status=" + status +
+                ", version=" + version +
                 '}';
     }
-
 }

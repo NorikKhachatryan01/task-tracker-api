@@ -1,5 +1,6 @@
-package org.example.tasktrackerapi;
+package org.example.tasktrackerapi.factory;
 
+import org.example.tasktrackerapi.model.Task;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.AbstractFactoryBean;
 import org.springframework.stereotype.Component;
