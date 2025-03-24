@@ -53,7 +53,5 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public void getProjectStuff(){
-        projectRepository.findAll().forEach(System.out::println);
-    }
+
 }
