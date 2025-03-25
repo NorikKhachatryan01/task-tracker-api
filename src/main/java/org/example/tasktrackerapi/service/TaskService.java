@@ -45,7 +45,7 @@ public class TaskService {
                 .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
     }
     public Task createTaskWithType(int typeIndex) {
-        String title = taskTypes[typeIndex % taskTypes.length]; // Cycle through types
+        String title = taskTypes[typeIndex % taskTypes.length];
         return taskRepository.save(new Task(null, title, false));
     }
 
@@ -53,7 +53,5 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public void getProjectStuff(){
-        projectRepository.findAll().forEach(System.out::println);
-    }
+
 }

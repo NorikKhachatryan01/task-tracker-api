@@ -14,11 +14,11 @@ public class DirtyContextTest {
     @Autowired
     private TaskService taskService;
 
-//    @Test
-//    public void testModifyState() {
-//        Task task = taskService.createTask(new Task(null, "Dirty Task", false));
-//        assertEquals("Dirty Task", taskService.getAllTasks().get(0).getTitle());
-//    }
+    @Test
+    public void testModifyState() {
+        Task task = taskService.createTask(new Task(null, "Dirty Task", false));
+        assertEquals("Dirty Task", taskService.getAllTasks().get(0).getTitle());
+    }
 
     @Test
     public void testExpectEmptyState() {
