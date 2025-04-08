@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TaskFactoryBean extends AbstractFactoryBean<Task> {
-    @Value("${app.default-task-title:Default Task}") // Fallback to "Default Task"
+    @Value("${app.default-task-title:Default Task}")
     private String defaultTitle;
     @Override
     public Class<?> getObjectType() {
