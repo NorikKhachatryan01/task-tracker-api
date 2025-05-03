@@ -1,11 +1,10 @@
 package org.example.tasktrackerapi.model;
 
 import jakarta.persistence.*;
-import org.example.tasktrackerapi.model.Task;
-
 import java.util.List;
 
 @Entity
+@Table(name = "project")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

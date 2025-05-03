@@ -3,12 +3,15 @@ package org.example.tasktrackerapi.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "task")
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private Boolean status;
+
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id")
@@ -16,7 +19,6 @@ public class Task {
 
     @Version
     private Long version;
-
 
     public Task() {}
     public Task(Long id, String title, Boolean status)  {

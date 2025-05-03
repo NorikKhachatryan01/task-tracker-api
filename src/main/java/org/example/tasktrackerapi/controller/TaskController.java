@@ -1,25 +1,27 @@
 package org.example.tasktrackerapi.controller;
 
-import org.example.tasktrackerapi.service.TaskService;
 import org.example.tasktrackerapi.model.Task;
+import org.example.tasktrackerapi.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 public class TaskController {
 
     private final TaskService taskService;
-
     @Autowired
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
+
     }
 
     @PostMapping("/tasks")
     public Task create(@RequestBody Task task) {
-        return taskService.createTask(task);
+        Task createdTask = taskService.createTask(task);
+        return createdTask;
     }
 
     @GetMapping("/tasks")
@@ -32,10 +34,9 @@ public class TaskController {
     public Task createWithType(@PathVariable int index) {
         return taskService.createTaskWithType(index);
     }
-
     @GetMapping("/status")
     @ResponseBody
-    public String getStatus(){
+    public String getStatus() {
         return "Status check";
     }
 

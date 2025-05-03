@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Creation WebSocket Client</title>
+    <!-- Loads SockJS for WebSocket fallback support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <!-- Loads STOMP.js for STOMP protocol support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+<h1>Project Creation Alerts</h1>
+<div id="status">Connecting...</div>
+<div id="messages"></div>
+<script>
+    // Creates a SockJS connection to the WebSocket endpoint
+    const socket = new SockJS('http://localhost:8080/ws');
+    // Initializes a STOMP client over the SockJS connection
+    const stompClient = Stomp.over(socket);
+
+    // Updates the status display
+    function updateStatus(message) {
+        document.getElementById('status').innerText = message;
+        console.log('Status: ' + message);
+    }
+
+    // Connects to the WebSocket server
+    stompClient.connect({}, function (frame) {
+        updateStatus('Connected to WebSocket');
+        console.log('Connected: ' + frame);
+        // Subscribes to the project creation topic
+        stompClient.subscribe('/topic/projects', function (message) {
+            // Parses the received project message
+            const project = JSON.parse(message.body);
+            // Displays the project details in the browser
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML += `<p>Project Created: ID=${project.id}, Name=${project.name}</p>`;
+            console.log('Received project:', project);
+        }, function (error) {
+            console.error('Subscription error:', error);
+            updateStatus('Subscription failed');
+        });
+    }, function (error) {
+        // Logs connection errors
+        console.error('Connection error:', error);
+        updateStatus('Failed to connect to WebSocket');
+    });
+</script>
+</body>
+</html>
